@@ -4,24 +4,28 @@ import { Event } from "./types";
 import { GoogleDriveClient } from "./drive";
 import { getYoutubeInfo } from "./youtube";
 import { execAndLog } from "./shared";
+import { download } from "./download";
 
-
-async function youtubeToDriveProccess(videoLink: string, googleDriveClient: GoogleDriveClient): Promise<string> {
-	const { name, streamReadable } = await getYoutubeInfo(videoLink);
-	return googleDriveClient.uploadFile(streamReadable, "video/mp4", name)
-}
 
 export const handler: Handler<Event> = async (event) => {
 	console.log(`Starting with event: ${JSON.stringify(event)}`);
 
-	const { playlist } = event;
+	const { playlist, action } = event;
 	const googleDriveClient = new GoogleDriveClient();
 
 	const { errors, results } = await execAndLog("Youtube to drive", () => PromisePool
 		.for(playlist)
 		.withConcurrency(50)
-		.process((videoLink) => {
-			return youtubeToDriveProccess(videoLink, googleDriveClient)
+		.process(async (videoLink) => {
+			const { name, streamReadable } = await getYoutubeInfo(videoLink, action);
+			const mimeType = "Download" === action ? "audio/mpeg" : "video/mp4";
+			const fileName = ("Download" === action ? `${name}.mp3` : `${name}.mp4`).replace(/[/\\?%*:|"<>]/g, '-');
+			switch (action) {
+				case "Drive":
+					return googleDriveClient.uploadFile(streamReadable, fileName, mimeType);
+				case "Download":
+					return download(streamReadable, fileName);
+			}
 		})
 	);
 
@@ -31,7 +35,7 @@ export const handler: Handler<Event> = async (event) => {
 
 	console.log(`results: ${JSON.stringify(results)}`);
 
-	if (results.length) {	
+	if (results.length) {
 		return results;
 	}
 

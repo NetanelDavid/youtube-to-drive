@@ -7,7 +7,8 @@
     "run-ts": "aws-vault exec private -- ts-node -T src/index.ts",
     "run": "aws-vault exec private -- node dist/index.cjs",
     "build": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets-manager",
-    "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts"
+    "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts",
+    "test-youtube": "ts-node -T __tests__/manual/youtube.test.ts"
   },
   "author": "Netanel David",
   "license": "UNLICENSED",

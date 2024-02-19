@@ -1,7 +1,10 @@
 import { Readable } from "stream";
 
+export type Action = "Drive" | "Download";
+
 export type Event = {
 	playlist: string[];
+	action: Action;
 }
 
 export type YoutubeInfo = {

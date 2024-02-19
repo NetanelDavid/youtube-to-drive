@@ -54,10 +54,9 @@ export class GoogleDriveClient {
 
 	public async uploadFile(
 		readableStream: Readable,
+		fileName: string,
 		mimeType: string,
-		name: string
 	): Promise<string> {
-		const fileName = `${name}.${mimeType.split("/")[1]}`
 		const accessToken = (await this.generatotAccessToken.next()).value;
 		const auth = new OAuth2Client({
 			credentials: {
@@ -79,7 +78,6 @@ export class GoogleDriveClient {
 			const url = `https://drive.google.com/file/d/${file.data.id}/view`;
 			return url;
 		} catch (err) {
-			// TODO(developer) - Handle error
 			throw err;
 		}
 	}

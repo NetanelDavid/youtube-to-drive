@@ -1,3 +1,3 @@
 import { getYoutubeInfo } from "../../src/youtube";
 
-getYoutubeInfo("https://www.youtube.com/watch?v=aqz-KE-bpKQ")
+getYoutubeInfo("https://www.youtube.com/watch?v=kG3wPyANstM", "Download")
