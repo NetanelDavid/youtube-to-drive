@@ -1,0 +1,30 @@
+{
+  "name": "youtube-to-drive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "run-ts": "aws-vault exec private -- ts-node -T src/index.ts",
+    "run": "aws-vault exec private -- node dist/out.cjs",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/out.cjs --platform=node --external:@aws-sdk/client-secrets-manager",
+    "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts"
+  },
+  "author": "Netanel David",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.515.0",
+    "@supercharge/promise-pool": "^3.1.1",
+    "axios": "^1.6.7",
+    "google-auth-library": "^9.6.3",
+    "googleapis": "^128.0.0",
+    "qs": "^6.11.2",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.134",
+    "@types/qs": "^6.9.11",
+    "aws-lambda": "^1.0.7",
+    "esbuild": "^0.19.5",
+    "ts-node": "^10.9.2"
+  }
+}
