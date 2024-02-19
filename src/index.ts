@@ -31,5 +31,9 @@ export const handler: Handler<Event> = async (event) => {
 
 	console.log(`results: ${JSON.stringify(results)}`);
 
-	return results;
+	if (results.length) {	
+		return results;
+	}
+
+	throw new Error("The proccess is faild, see logs for details")
 }

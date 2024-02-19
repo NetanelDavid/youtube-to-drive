@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "run-ts": "aws-vault exec private -- ts-node -T src/index.ts",
-    "run": "aws-vault exec private -- node dist/out.cjs",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/out.cjs --platform=node --external:@aws-sdk/client-secrets-manager",
+    "run": "aws-vault exec private -- node dist/index.cjs",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets-manager",
     "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts"
   },
   "author": "Netanel David",
