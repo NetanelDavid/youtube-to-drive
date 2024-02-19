@@ -6,9 +6,11 @@
   "scripts": {
     "run-ts": "aws-vault exec private -- ts-node -T src/index.ts",
     "run": "aws-vault exec private -- node dist/index.cjs",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets-manager",
+    "build": "npm run clean && esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets- && npm run zip",
     "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts",
-    "test-youtube": "ts-node -T __tests__/manual/youtube.test.ts"
+    "test-youtube": "ts-node -T __tests__/manual/youtube.test.ts",
+    "zip": "powershell Compress-Archive ./dist/index.cjs ./dist/index.zip",
+    "clean": "git clean -fdx -e node_modules"
   },
   "author": "Netanel David",
   "license": "UNLICENSED",
