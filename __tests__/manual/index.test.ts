@@ -1,7 +1,8 @@
 import { handler } from "../../src/index";
 
 handler({
-    action: "Download",
+    format: "mp3",
+    action: "download",
     playlist: [
         // יענקי היל חיים ישראל
         "https://www.youtube.com/watch?v=lNw2I4ydaXU",
