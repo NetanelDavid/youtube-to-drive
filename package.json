@@ -6,7 +6,7 @@
   "scripts": {
     "run-ts": "aws-vault exec private -- ts-node -T src/index.ts",
     "run": "aws-vault exec private -- node dist/index.cjs",
-    "build": "npm run clean && esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets --external:fluent-ffmpeg && npm run zip",
+    "build": "npm run clean && esbuild src/index.ts --bundle --outfile=dist/index.cjs --platform=node --external:@aws-sdk/client-secrets --external:./lib-cov/fluent-ffmpeg --external:@ffmpeg-installer/ffmpeg && npm run zip",
     "test": "aws-vault exec private -- ts-node -T __tests__/manual/index.test.ts",
     "test-youtube": "ts-node -T __tests__/manual/youtube.test.ts",
     "zip": "powershell Compress-Archive ./dist/index.cjs ./dist/index.zip",
