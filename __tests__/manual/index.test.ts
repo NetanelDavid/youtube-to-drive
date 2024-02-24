@@ -1,87 +1,164 @@
 import { handler } from "../../src/index";
 
 handler({
-    format: "mp3",
-    action: "download",
+    palylistFormat: "mp4",
+    playlisttAction: "download",
+    playlistQuality: "low",
     playlist: [
-        // יענקי היל חיים ישראל
-        "https://www.youtube.com/watch?v=lNw2I4ydaXU",
-        // יענקי היל אברהם פריד
-        "https://www.youtube.com/watch?v=rgPGVU1nO7I",
-        // יענקי היל ישי ריבו
-        "https://www.youtube.com/watch?v=gbe0YFUUhZQ",
-        // יענקי היל פתחי לי 
-        "https://www.youtube.com/watch?v=KfDC8bvx89M",
-        // בני פרידמן לא לפחד
-        "https://www.youtube.com/watch?v=zCw-h4ikn_c",
-        // אבי הילסון לראות את הטוב
-        "https://www.youtube.com/watch?v=soj14hA7UKc",
-        // אבי אילסון תן לי אור
-        "https://www.youtube.com/watch?v=pJMXeJRm7cg",
-        //אבי אילסון מקום לחלום
-        "https://www.youtube.com/watch?v=uHEOB_X7fAk",
-        //  אבי אילסון שבילים
-        "https://www.youtube.com/watch?v=roApxa4iGfA",
-        // שובו אלי
-        "https://jmusic.me/vod/watch/mIsfB7foF838rPY",
-        // אבא נתנאל ישראל ואיציק גבאי
-        "https://www.youtube.com/watch?v=tsnkKRZXPoA",
-        // לילה טוב ילד
-        "https://www.youtube.com/watch?v=5PN4NnHcgZ4",
-        // מודה אני צמד ילד
-        "https://www.youtube.com/watch?v=LGSoBr0Sxdw",
-        // מתנות קטנות צמד ילד
-        "https://www.youtube.com/watch?v=oc_J8UiUvUo",
-        // לא נפסיק לרקוד
-        "https://www.youtube.com/watch?v=VUfuKKi3qQc",
-        //אברהם פריד אבא מלך העולם
-        "https://www.youtube.com/watch?v=WhxcSxDgtHI",
-        // מידד טסה אבא תראה
-        "https://www.youtube.com/watch?v=tlUAXjl4yhY",
-        // ואני מוטי שטיימניץ
-        "https://www.youtube.com/watch?v=JTh5yQwjNNo",
-        // מוטי שטיימניץ כי שמחתני
-        "https://www.youtube.com/watch?v=Bs03BR4ffyY",
-        // מוטי שטיימינץ לכה דודי
-        "https://www.youtube.com/channel/UCjh-noHUsafx_CSiieHNXFg",
-        // יענקי היל מילה של נחמה 
-        "https://www.youtube.com/watch?v=mDQbIB_aagY",
-        // אל תפול חיים ישראל
-        "https://www.youtube.com/watch?v=fcGTSuxDZ6g",
-        // משה קליין על תפול
-        "https://www.youtube.com/watch?v=f5TNkVPmNs4",
-        // משה קליין עוד לא מאוחר
-        "https://www.youtube.com/channel/UCDi07HVQVRGLtRS9gH_0woA",
-        // משה קליין היום
-        "https://www.youtube.com/watch?v=P4AS3jdGWeY",
-        // משה קליין להיות שלם
-        "https://www.youtube.com/watch?v=QVFwI22apZQ",
-        // תן לי תפילה שמואל
-        "https://www.youtube.com/watch?v=-wYyIvFFp4g",
-        // שלמה כהן מחרוזת
-        "https://www.youtube.com/watch?v=gciYfgd1Hf4",
-        // מוטי שטטימניץ הנשמה בקרבי
-        "https://www.youtube.com/watch?v=FL3h6UrX7kU",
-        // מוטי שטיימניץ זכור ברית אברהם
-        "https://www.youtube.com/watch?v=Cxwhqk8RVHk",
-        // מוטי שטיימניץ תנה בני
-        "https://www.youtube.com/watch?v=tYxFOEa6yHQ",
-        // אברהם פריד צמאה לך נפשי
-        "https://www.youtube.com/watch?v=YB30syENOdo",
-        // אברהם פריד איתך אני
-        "https://www.youtube.com/watch?v=kCavcNAsPFU",
-        // מיילך קאהן ונהפוך הוא
-        "https://www.youtube.com/watch?v=kiYXm_QernY",
-        // מיילך קאהן לכבוד שבת
-        "https://www.youtube.com/watch?v=ZwqKmQeNMEs",
-        // מיילך קאהן ואהבת
-        "https://www.youtube.com/watch?v=MWDF2LyBotk",
-        // בבידוד מול בורא עולם
-        "https://www.youtube.com/watch?v=oRU_8qFBrBo",
-        // יגדל ליפא שמלצער
-        "https://www.youtube.com/watch?v=lSB4q2fRBy0",
-        // ליפא שמעלצר נקדישך
-        "https://www.youtube.com/watch?v=z_b1jKRhEb0",
+        {
+            videoLink: "https://www.youtube.com/watch?v=lNw2I4ydaXU",
+        },
+        {
+            videoLink: "https://www.youtube.com/watch?v=rgPGVU1nO7I",
+        },
+        // {
+        //     videoName: "יענקי היל ישי ריבו",
+        //     videoLink: "https://www.youtube.com/watch?v=gbe0YFUUhZQ",
+        // },
+        // {
+        //     videoName: "יענקי היל פתחי לי ",
+        //     videoLink: "https://www.youtube.com/watch?v=KfDC8bvx89M",
+        // },
+        // {
+        //     videoName: "בני פרידמן לא לפחד",
+        //     videoLink: "https://www.youtube.com/watch?v=zCw-h4ikn_c",
+        // },
+        // {
+        //     videoName: "אבי הילסון לראות את הטוב",
+        //     videoLink: "https://www.youtube.com/watch?v=soj14hA7UKc",
+        // },
+        // {
+        //     videoName: "אבי אילסון תן לי אור",
+        //     videoLink: "https://www.youtube.com/watch?v=pJMXeJRm7cg",
+        // },
+        // {
+        //     videoName: "אבי אילסון מקום לחלום",
+        //     videoLink: "https://www.youtube.com/watch?v=uHEOB_X7fAk",
+        // },
+        // {
+        //     videoName: "אבי אילסון שבילים",
+        //     videoLink: "https://www.youtube.com/watch?v=roApxa4iGfA",
+        // },
+        // {
+        //     videoName: "שובו אלי",
+        //     videoLink: "https://jmusic.me/vod/watch/mIsfB7foF838rPY",
+        // },
+        // {
+        //     videoName: "אבא נתנאל ישראל ואיציק גבאי",
+        //     videoLink: "https://www.youtube.com/watch?v=tsnkKRZXPoA",
+        // },
+        // {
+        //     videoName: "לילה טוב ילד",
+        //     videoLink: "https://www.youtube.com/watch?v=5PN4NnHcgZ4",
+        // },
+        // {
+        //     videoName: "מודה אני צמד ילד",
+        //     videoLink: "https://www.youtube.com/watch?v=LGSoBr0Sxdw",
+        // },
+        // {
+        //     videoName: "מתנות קטנות צמד ילד",
+        //     videoLink: "https://www.youtube.com/watch?v=oc_J8UiUvUo",
+        // },
+        // {
+        //     videoName: "לא נפסיק לרקוד",
+        //     videoLink: "https://www.youtube.com/watch?v=VUfuKKi3qQc",
+        // },
+        // {
+        //     videoName: "אברהם פריד אבא מלך העולם",
+        //     videoLink: "https://www.youtube.com/watch?v=WhxcSxDgtHI",
+        // },
+        // {
+        //     videoName: "מידד טסה אבא תראה",
+        //     videoLink: "https://www.youtube.com/watch?v=tlUAXjl4yhY",
+        // },
+        // {
+        //     videoName: "ואני מוטי שטיימניץ",
+        //     videoLink: "https://www.youtube.com/watch?v=JTh5yQwjNNo",
+        // },
+        // {
+        //     videoName: "מוטי שטיימניץ כי שמחתני",
+        //     videoLink: "https://www.youtube.com/watch?v=Bs03BR4ffyY",
+        // },
+        // {
+        //     videoName: "מוטי שטיימינץ לכה דודי",
+        //     videoLink: "https://www.youtube.com/channel/UCjh-noHUsafx_CSiieHNXFg",
+        // },
+        // {
+        //     videoName: "יענקי היל מילה של נחמה ",
+        //     videoLink: "https://www.youtube.com/watch?v=mDQbIB_aagY",
+        // },
+        // {
+        //     videoName: "אל תפול חיים ישראל",
+        //     videoLink: "https://www.youtube.com/watch?v=fcGTSuxDZ6g",
+        // },
+        // {
+        //     videoName: "משה קליין על תפול",
+        //     videoLink: "https://www.youtube.com/watch?v=f5TNkVPmNs4",
+        // },
+        // {
+        //     videoName: "משה קליין עוד לא מאוחר",
+        //     videoLink: "https://www.youtube.com/channel/UCDi07HVQVRGLtRS9gH_0woA",
+        // },
+        // {
+        //     videoName: "משה קליין היום",
+        //     videoLink: "https://www.youtube.com/watch?v=P4AS3jdGWeY",
+        // },
+        // {
+        //     videoName: "משה קליין להיות שלם",
+        //     videoLink: "https://www.youtube.com/watch?v=QVFwI22apZQ",
+        // },
+        // {
+        //     videoName: "תן לי תפילה שמואל",
+        //     videoLink: "https://www.youtube.com/watch?v=-wYyIvFFp4g",
+        // },
+        // {
+        //     videoName: "שלמה כהן מחרוזת",
+        //     videoLink: "https://www.youtube.com/watch?v=gciYfgd1Hf4",
+        // },
+        // {
+        //     videoName: "מוטי שטטימניץ הנשמה בקרבי",
+        //     videoLink: "https://www.youtube.com/watch?v=FL3h6UrX7kU",
+        // },
+        // {
+        //     videoName: "מוטי שטיימניץ זכור ברית אברהם",
+        //     videoLink: "https://www.youtube.com/watch?v=Cxwhqk8RVHk",
+        // },
+        // {
+        //     videoName: "מוטי שטיימניץ תנה בני",
+        //     videoLink: "https://www.youtube.com/watch?v=tYxFOEa6yHQ",
+        // },
+        // {
+        //     videoName: "אברהם פריד צמאה לך נפשי",
+        //     videoLink: "https://www.youtube.com/watch?v=YB30syENOdo",
+        // },
+        // {
+        //     videoName: "אברהם פריד איתך אני",
+        //     videoLink: "https://www.youtube.com/watch?v=kCavcNAsPFU",
+        // },
+        // {
+        //     videoName: "מיילך קאהן ונהפוך הוא",
+        //     videoLink: "https://www.youtube.com/watch?v=kiYXm_QernY",
+        // },
+        // {
+        //     videoName: "מיילך קאהן לכבוד שבת",
+        //     videoLink: "https://www.youtube.com/watch?v=ZwqKmQeNMEs",
+        // },
+        // {
+        //     videoName: "מיילך קאהן ואהבת",
+        //     videoLink: "https://www.youtube.com/watch?v=MWDF2LyBotk",
+        // },
+        // {
+        //     videoName: "בבידוד מול בורא עולם",
+        //     videoLink: "https://www.youtube.com/watch?v=oRU_8qFBrBo",
+        // },
+        // {
+        //     videoName: "יגדל ליפא שמלצער",
+        //     videoLink: "https://www.youtube.com/watch?v=lSB4q2fRBy0",
+        // },
+        // {
+        //     videoName: "ליפא שמעלצר נקדישך",
+        //     videoLink: "https://www.youtube.com/watch?v=z_b1jKRhEb0",
+        // },
     ]
 }, {} as any, () => { })?.then(res => {
     console.log(res);
