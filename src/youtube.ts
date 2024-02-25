@@ -7,7 +7,6 @@ export function getMp3Filter(info: ytdl.videoInfo, quality: Quality): (format: y
     const availVableFormats = info.formats
         .filter((format) => format.hasAudio && !format.hasVideo)
         .sort((a, b) => Number(b.contentLength) - Number(a.contentLength));
-    console.log(availVableFormats.map(f => (Number(f.contentLength) / 1024 / 1024) + "MB"));
     const contentLength = "high" === quality ? availVableFormats[0].contentLength : availVableFormats[availVableFormats.length - 1].contentLength;
 
     return (format) => {
@@ -15,9 +14,20 @@ export function getMp3Filter(info: ytdl.videoInfo, quality: Quality): (format: y
     }
 }
 
-export function getMp4Filter(_info: ytdl.videoInfo, _quality: Quality): (format: ytdl.videoFormat) => boolean {
-    return (format) => {
-        return format.hasAudio && format.hasVideo
+export function getMp4LowFilter(info: ytdl.videoInfo, quality: Quality): (format: ytdl.videoFormat) => boolean {
+    if ("low" === quality) {
+        return (format) => {
+            return format.hasAudio && format.hasVideo
+        }
+    } else {
+        // return only video and will merge
+        const availVableFormats = info.formats
+            .filter((format) => !format.hasAudio && format.hasVideo)
+            .sort((a, b) => Number(b.contentLength) - Number(a.contentLength));
+        const contentLength = availVableFormats[0].contentLength;
+        return (format) => {
+            return !format.hasAudio && format.hasVideo && contentLength === format.contentLength;
+        }
     }
 }
 
@@ -27,14 +37,14 @@ export async function getYoutubeInfo(videoLink: string): Promise<ytdl.videoInfo>
     return info;
 }
 
-export async function getYoutubeStream(videoLink: string, format: Format, quality: Quality, videoName?: string) {
-    const info = await getYoutubeInfo(videoLink);
+export async function getYoutubeStream(info: ytdl.videoInfo, videoLink: string, format: Format, quality: Quality, videoName?: string) {
     const name = videoName || info.videoDetails.title;
 
     const streamReadable = await execAndLog("Youtube stream", () => {
         return ytdl(videoLink, {
+            quality: ""
             filter: "mp4" === format
-                ? getMp4Filter(info, quality)
+                ? getMp4LowFilter(info, quality)
                 : getMp3Filter(info, quality),
         });
     });
@@ -43,5 +53,4 @@ export async function getYoutubeStream(videoLink: string, format: Format, qualit
         name,
         streamReadable,
     }
-
 }

@@ -10,3 +10,7 @@ export async function execAndLog<T extends () => any>(label: string, func: T): P
         throw error;
     }
 }
+
+export function getFileName(sourceName: string) {
+    return sourceName.replace(/[/\\?%*:|"<>]/g, '-')
+}

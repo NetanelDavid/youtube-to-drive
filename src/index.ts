@@ -1,11 +1,12 @@
+import { Readable } from "stream";
 import PromisePool from "@supercharge/promise-pool";
 import type { Handler } from "aws-lambda";
 import { Event } from "./types";
 import { GoogleDriveClient } from "./drive";
-import { getYoutubeStream } from "./youtube";
-import { execAndLog } from "./shared";
+import { getYoutubeInfo, getYoutubeStream } from "./youtube";
+import { execAndLog, getFileName } from "./shared";
 import { download } from "./download";
-import { convert } from "./convert";
+import { convert, merge } from "./convert";
 
 export const handler: Handler<Event> = async (event) => {
 	console.log(`Starting with event: ${JSON.stringify(event, null, "\t")}\n`, `playlistLength: ${event.playlist?.length}`);
@@ -20,8 +21,25 @@ export const handler: Handler<Event> = async (event) => {
 			const format = vidoeFormat || palylistFormat;
 			const action = videoAction || playlisttAction;
 			const qaulity = vidoeQuality || playlistQuality;
-			const { name, streamReadable } = await getYoutubeStream(videoLink, format, qaulity, videoName);
-			const fileName = (`${name}.${format}`).replace(/[/\\?%*:|"<>]/g, '-');
+			const youTubeInfo = await getYoutubeInfo(videoLink);
+
+			let name: string;
+			let streamReadable: Readable;
+			if ("mp4" === format && "high" === qaulity) {
+				const [audio, video] = await Promise.all([
+					getYoutubeStream(youTubeInfo, videoLink, "mp3", "high"),
+					getYoutubeStream(youTubeInfo, videoLink, "mp4", "high"),
+				]);
+				name = audio.name;
+				await download(video.streamReadable, `${video.name}.mp4`)
+				await download(audio.streamReadable, `${audio.name}.mp3`)
+				// streamReadable = await merge(audio.streamReadable, video.streamReadable);
+			} else {
+				const youtubeStream = await getYoutubeStream(youTubeInfo, videoLink, format, qaulity, videoName);
+				name = youtubeStream.name;
+				streamReadable = youtubeStream.streamReadable;
+			}
+			const fileName = getFileName(`${name}.${format}`);
 
 			const convertedStream = "mp3" === format ? await convert(streamReadable, format) : streamReadable;
 

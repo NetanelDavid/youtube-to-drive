@@ -3,14 +3,14 @@ import { handler } from "../../src/index";
 handler({
     palylistFormat: "mp4",
     playlisttAction: "download",
-    playlistQuality: "low",
+    playlistQuality: "high",
     playlist: [
         {
             videoLink: "https://www.youtube.com/watch?v=lNw2I4ydaXU",
         },
-        {
-            videoLink: "https://www.youtube.com/watch?v=rgPGVU1nO7I",
-        },
+        // {
+        //     videoLink: "https://www.youtube.com/watch?v=rgPGVU1nO7I",
+        // },
         // {
         //     videoName: "יענקי היל ישי ריבו",
         //     videoLink: "https://www.youtube.com/watch?v=gbe0YFUUhZQ",
