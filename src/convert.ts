@@ -1,13 +1,11 @@
 import { Readable, PassThrough, Writable } from "stream";
 import ffmpeg from "fluent-ffmpeg";
-import { path } from "@ffmpeg-installer/ffmpeg";
 import cp from "child_process";
 import { Format } from "./types";
 import { execAndLog } from "./shared";
 
-if (!process.env.IS_CLOUD) {
-    ffmpeg.setFfmpegPath(path);
-}
+let ffmpegCommand: string = process.env.IS_CLOUD ? "ffmpeg" : require("@ffmpeg-installer/ffmpeg").path;
+ffmpeg.setFfmpegPath(ffmpegCommand);
 
 export async function convert(streamReadable: Readable, format: Format): Promise<Readable> {
     return execAndLog(`Convert to ${format}`, () => {
@@ -19,7 +17,7 @@ export async function convert(streamReadable: Readable, format: Format): Promise
 
 export async function merge(audioStreamReadable: Readable, videoStreamReadable: Readable): Promise<Readable> {
     return execAndLog("Merge Audio and video", () => {
-        const ffmpegProcess = cp.spawn(process.env.IS_CLOUD ? "ffmpeg" : path, [
+        const ffmpegProcess = cp.spawn(ffmpegCommand, [
             '-i', `pipe:3`,
             '-i', `pipe:4`,
             '-map', '0:v',
