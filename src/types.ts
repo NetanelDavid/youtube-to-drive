@@ -7,11 +7,11 @@ export type Event = {
 		videoLink: string;
 		videoName?: string;
 		videoAction?: Action;
-		vidoeFormat?: Format;
-		vidoeQuality?: Quality;
+		videoFormat?: Format;
+		videoQuality?: Quality;
 	}[];
-	playlisttAction: Action;
-	palylistFormat: Format;
+	playlistAction: Action;
+	playlistFormat: Format;
 	playlistQuality: Quality;
 }
 

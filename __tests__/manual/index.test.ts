@@ -1,12 +1,12 @@
 import { handler } from "../../src/index";
 
 handler({
-    palylistFormat: "mp4",
-    playlisttAction: "download",
+    playlistFormat: "mp4",
     playlistQuality: "high",
+    playlistAction: "drive",
     playlist: [
         {
-            videoLink: "https://www.youtube.com/watch?v=lNw2I4ydaXU",
+            videoLink: "https://www.youtube.com/watch?v=s01kxX74VSM",
         },
         // {
         //     videoLink: "https://www.youtube.com/watch?v=rgPGVU1nO7I",
